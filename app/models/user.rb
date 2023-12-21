@@ -31,5 +31,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :first_name, :surname, :date_of_birth, :address, :next_of_kin, :next_of_kin_phone, :phone, presence: true
-
+  
+  has_many :buses, dependent: :destroy
+  has_many :terminals, dependent: :destroy
+  has_many :states, dependent: :destroy
 end

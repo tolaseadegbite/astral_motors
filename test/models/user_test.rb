@@ -29,7 +29,8 @@ require "test_helper"
 class UserTest < ActiveSupport::TestCase
   
   def setup
-    @user = User.create(first_name: 'John', surname: 'Doe', email: 'john@doe.com', phone: '00221345', address: 'my house', date_of_birth: Date.parse('1995-12-10'), password: '123456', password_confirmation: '123456', next_of_kin: 'Jane Doe', next_of_kin_phone: '00339293893')
+    @state = states(:ekiti)
+    @user = User.create(first_name: 'Arike', surname: 'Ade', email: 'arike@example.com', phone: '09001100220', address: 'my house', date_of_birth: Date.parse('1995-12-10'), password: '123456', password_confirmation: '123456', next_of_kin: 'Jane Doe', next_of_kin_phone: '00339293893')
   end
 
   test 'user must be valid' do
@@ -39,6 +40,7 @@ class UserTest < ActiveSupport::TestCase
   test 'surname must be present' do
     @user.surname = nil
     assert_not @user.valid?
+    puts @user.errors.messages
   end
 
   test 'first_name must be present' do
@@ -69,6 +71,30 @@ class UserTest < ActiveSupport::TestCase
   test 'phone must be present' do
     @user.phone = nil
     assert_not @user.valid?
+  end
+
+  test 'destroy associated buses when a user is destroyed' do
+    @user.save
+    @user.buses.create!(name: 'Hilux Bus')
+    assert_difference 'Bus.count', -1 do
+      @user.destroy
+    end
+  end
+
+  test 'destroy associated terminals when a user is destroyed' do
+    @user.save
+    @user.terminals.create!(name: 'Astral-Ijigbo', state: @state, phone: '08107768469', address: 'Ijigbo junction, Ado-Ekiti, Ekiti State')
+    assert_difference 'Terminal.count', -1 do
+      @user.destroy
+    end
+  end
+
+  test 'destroy associated states when a user is destroyed' do
+    @user.save
+    @user.states.create!(name: 'Osun')
+    assert_difference 'State.count', -1 do
+      @user.destroy
+    end
   end
   
 end

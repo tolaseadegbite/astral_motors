@@ -30,4 +30,24 @@
 # below each fixture, per the syntax in the comments below
 #
 
+tolase:
+  surname: Adegbite
+  first_name: Tolase
+  email: tolase@example.com
+  admin: true
+  address: new house, Oyo
+  date_of_birth: Date.parse('1995/12/10')
+  phone: 09001100220
+  next_of_kin: Lashe
+  next_of_kin_phone: 08100110016
 
+john:
+  surname: Doe
+  first_name: John
+  email: john@doe.com
+  admin: false
+  address: new house, Oyo
+  date_of_birth: Date.parse('1905/12/10')
+  phone: 09001100220
+  next_of_kin: Jane Doe
+  next_of_kin_phone: 08100110011
