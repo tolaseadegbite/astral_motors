@@ -181,7 +181,7 @@ GEM
     mime-types-data (3.2023.0808)
     mini_magick (4.12.0)
     mini_mime (1.1.5)
-    minitest (5.15.0)
+    minitest (5.20.0)
     minitest-reporters (1.5.0)
       ansi
       builder
@@ -342,7 +342,7 @@ DEPENDENCIES
   image_processing (~> 1.2)
   jbuilder
   jsbundling-rails
-  minitest (= 5.15.0)
+  minitest (= 5.20.0)
   minitest-reporters (= 1.5.0)
   paystack
   pg (~> 1.1)
